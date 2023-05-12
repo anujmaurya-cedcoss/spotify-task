@@ -11,6 +11,11 @@ class IndexController extends Controller
     {
         // redirected to view
     }
+    public function searchHomeAction()
+    {
+        // redirected to view
+    }
+
     public function searchAction()
     {
         $author = $this->request->getPost('name');
@@ -152,14 +157,18 @@ class IndexController extends Controller
 
     public function addAction()
     {
-        $user_id = 1;
-        $type = $_GET['type'];
-        $spotify_id = $_GET['id'];
-        $spotify = new Favorites();
-        $spotify->spotify_id = $spotify_id;
-        $spotify->type = $type;
-        $spotify->user_id = $user_id;
-        $spotify->save();
-        $this->response->redirect('/showfav/');
+        if (!isset($_SESSION['user'])) {
+            $this->response->redirect('signup/login');
+        } else {
+            $user_id = $_SESSION['user'];
+            $type = $_GET['type'];
+            $spotify_id = $_GET['id'];
+            $spotify = new \Favorites();
+            $spotify->spotify_id = $spotify_id;
+            $spotify->type = $type;
+            $spotify->user_id = $user_id;
+            $spotify->save();
+            $this->response->redirect('/showfav/');
+        }
     }
 }

@@ -1,0 +1,37 @@
+<?php
+echo Phalcon\Tag::form(
+    [
+        "signup/findlogin",
+        "method" => "post",
+        "class" => "col-12 center m-5",
+        
+    ]
+);
+?>
+<h1>Login</h1>
+<!-- Email input -->
+<div class="form-outline mb-4">
+    <input name='email' type="email" id="form2Example1" class="form-control col-4 " />
+    <label class="form-label" for="form2Example1">
+        <?php echo   ("Email address") ?>
+    </label>
+</div>
+
+<!-- Password input -->
+<div class="form-outline mb-4">
+    <input name='password' type="password" id="form2Example2" class="form-control col-4" />
+    <label class="form-label" for="form2Example2">
+        <?php echo ("Password") ?>
+    </label>
+</div>
+
+<!-- Submit button -->
+<button type="submit" class="btn btn-primary btn-block mb-4 col-4">
+    <?php echo   ("Sign in") ?>
+</button>
+<?php echo $this->tag->linkTo(
+    ['/signup/',   ('SignUp Instead'), 'class' => 'btn btn-secondary col-4 mb-5 px-5']
+);
+?>
+</div>
+</form>
